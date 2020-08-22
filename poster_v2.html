@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content=''>
+<title>Migrating Low-Mass Planets in Inviscid Dusty Protoplanetary Discs</title>
+
+<!-- CSS style -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+.panel-default > .panel-custom-title {background: #d0dedb; color: #8A4B08;}
+.panel-default > .panel-body {background-color: #eef3f2;}
+h3 {margin-top:0px;}
+body {background-color: #eef3f2;}
+
+/* Style the Image Used to Trigger the Modal
+   from https://www.w3schools.com/howto/howto_css_modal_images.asp */
+#Fig1 {border-radius: 5px; cursor: pointer; transition: 0.3s;}
+#Fig2 {border-radius: 5px; cursor: pointer; transition: 0.3s;}
+#Fig3 {border-radius: 5px; cursor: pointer; transition: 0.3s;}
+#Fig4 {border-radius: 5px; cursor: pointer; transition: 0.3s;}
+#Fig5 {border-radius: 5px; cursor: pointer; transition: 0.3s;}
+#Fig6 {border-radius: 5px; cursor: pointer; transition: 0.3s;}
+
+#Fig1:hover {opacity: 0.8;}
+#Fig2:hover {opacity: 0.8;}
+#Fig3:hover {opacity: 0.8;}
+#Fig4:hover {opacity: 0.8;}
+#Fig5:hover {opacity: 0.8;}
+#Fig6:hover {opacity: 0.8;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+</style>
+
+<!-- Javascript library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<!-- Content -->
+<body>
+<div class='container' style='margin-top:20px'>
+
+<!-- Title -->
+  <div class='row'>
+    <div class='col-sm-12'>
+      <div class='panel panel-default'>
+        <div class='panel-heading panel-custom-title'>
+          <h2 class='text-center'>Migrating Low-Mass Planets in Inviscid Dusty Protoplanetary Discs</h2>
+          <h3 class='text-center'>He-Feng Hsieh (NTHU, ASIAA), Min-Kai Lin (ASIAA)</h3>
+          <!-- h3 class='text-center'>He-Feng Hsieh<sup>1, 2</sup>, Min-Kai Lin<sup>2</sup></h3-->
+          <!-- h5 class='text-center'><sup>1</sup>Institute of Astronomy, National Tsing Hua University;  <sup>2</sup>Institute of Astronomy and Astrophysics, Academia Sinica</h5-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Abstract -->
+  <div class='row'>
+    <div class='col-sm-12'>
+      <div class='panel panel-default'>
+        <div class='panel-body'>
+          <p class='text-justify'>
+            Disc-driven planet migration is integral to the formation of planetary systems. In standard, gas-dominated protoplanetary discs, low-mass planets and/or planetary cores undergo rapid inwards migration and are lost to the central star. However, several recent studies indicate that the solid component in protoplanetary discs can have a significant dynamical effect on disc-planet interaction, especially when the solid-to-gas mass ratio approaches unity or larger and the dust-on-gas drag forces become significant.
+            <br><br>
+            In this work, we study planet migration in dust-rich discs via a systematic set of high-resolution, two-dimensional numerical simulations. We show that the inwards migration of low-mass planets can be slowed down by dusty dynamical corotation torques. We also identify a new regime of stochastic migration applicable to discs with dust-to-gas mass ratios \(Z \gtrsim 0.3\) and particle Stokes numbers \(\text{St} \gtrsim 0.03\). In these cases, disc-planet interaction leads to the continuous development of small-scale, intense dust vortices that scatter the planet, which can potentially halt or even reverse the inwards planet migration.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Methods -->
+  <div class='row'>
+    <div class='col-sm-6'>
+      <div class='panel panel-default'>
+        <div class="panel-heading panel-custom-title">
+          <h4>Methods</h4>
+        </div>
+        <div class='panel-body'>
+          <p class='text-justify'>
+            We study the orbital migration of a low-mass planet in an isothermal, inviscid, and non-self-gravitating protoplanetary disc. We consider a two-fluid disc, consisting of gas and one dust species, in the two-dimensional (2D), razor-thin disc approximation. Both the gas and dust species are treated as fluids, but the dust fluid has zero pressure.
+            <br><br>
+            We include the aerodynamic drag force between dust and gas. The drag force is assumed in the Epstein regime in which its strength depends linearly on the relative velocity between the gas and dust, and the dimensionless Stokes number \(\text{St}\) that measures the dust-gas coupling. Physically, \(\text{St}\) depends on the properties of dust species (size and internal density) and surrounding gas (density).
+            <br><br>
+            We simulate the above disc-planet system using the <a href='https://bitbucket.org/fargo3d/public' target='_blank'>FARGO3D</a> code, where the continuity and Navier-Stokes equations are numerically solved in the cylindrical polar coordinate, \((r, \phi)\), in a frame of reference centred on the central star. The simulation domain is \((r, \phi) \in [0.4, 2.0] \times [0, 2 \pi]\), which is uniformly resolved by \((N_r, N_\phi) = (2880, 5344)\) cells in the radial and azimuthal direction, respectively. We apply periodic boundaries in azimuthal direction and set reflective radial boundaries to preserve rotational equilibrium. We also apply damping condition to reduce reflections.
+          </p>
+        </div>
+      </div>
+    </div>
+
+<!-- Fiducial Model -->
+    <div class='col-sm-6'>
+      <div class='panel panel-default'>
+        <div class="panel-heading panel-custom-title">
+          <h4>Fiducial Models</h4>
+        </div>
+        <div class='panel-body'>
+          <p class='text-justify'>
+            We initialize the 2D disc in an axisymmetric, steady state. The initial gas surface density and squared sound-speed are set to be constant: \[\Sigma_\text{g}(r) = \Sigma_{\text{g}0} \quad\quad c_\text{s}(r) = c_{\text{s}0}\] where the subscript \(0\) denotes evaluations at the reference radius \(r_0\). The radial pressure gradient of the gas disc thus vanishes everywhere so that both gas and dust are in Keplerian motion. The gas surface density scale \(\Sigma_{\text{g}0}\) is determined by the dust-to-gas mass ratio (metallicity), \(Z = \Sigma_\text{d} / \Sigma_\text{g}\), and Toomre parameter: \[ Q = \frac{c_\text{s} \Omega_\text{K}}{\pi G \Sigma_\text{g} (1 + Z)}\] where \(G\) is gravitational constant and \(\Omega_\text{K}\) is the Keplerian frequency. We adopt \(Q_0 = 10\) and vary the metallicity. To set the reference sound-speed \(c_{\text{s}0} = H_0 \Omega_{\text{K}0}\), where \(H_0\) is the pressure scale height of gas disc, we define an effective scale height \(\widetilde{H} \equiv H / \sqrt{1 + Z}\) for dusty discs, and adopt \(\widetilde{H_0} = 0.05\).
+            <br><br>
+            We place one planet initially on a circular orbit with orbital distance \(r_\text{p} = r_0\). The planet-to-star mass is set to \(M_\text{p} / M_\star = 6 \times 10^{-6}\), which corresponds to a two Earth-mass planet orbiting a solar-mass star.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Simulation Results -->
+  <div class='row'>
+    <div class='col-sm-12'>
+      <div class='panel panel-default'>
+        <div class="panel-heading panel-custom-title">
+          <h4>Simulation Results</h4>
+        </div>
+        <div class='panel-body'>
+          <div class='row'>
+            <div class='col-sm-6'>
+              <p class='text-justify'>
+                We consider discs with metallicity \(Z \in [0.01,\ 0.1,\ 0.3,\ 0.5,\ 1]\) and Stokes number \(\text{St} \in [10^{-3},\ 0.01,\ 0.03,\ 0.6,\ 0.1]\). In the parameter space we explored, the migration behaviour can be grouped in two categories:
+                <ul class="list-unstyled text-justify">
+                  <ul>
+                    <li>
+                      <strong>Steady Migration</strong>: In discs with \(Z \lesssim 0.1\) and/or \(\text{St} \lesssim 0.01\), the planet migrates inward steadily.
+                    </li>
+                    <li>
+                      <strong>Stochastic Migration</strong>: In discs with \(Z \gtrsim 0.3\) and \(\text{St} \gtrsim 0.03\), the migration behaviour becomes chaotic in a few hundreds of orbits.
+                    </li>
+                  </ul>
+                </ul>
+              </p>
+
+              <!-- Figure 1 (modal images) -->
+              <img id="Fig1" src="https://raw.githubusercontent.com/hfhsieh/exo3-poster/master/Various_St_Z_OrbDist.png" alt="Orbital evolution of a two Earth-mass planet in discs with different metallicities and Stokes numbers." style="width:100%;max-width:600px">
+              <p class='small text-justify'><em>Figure 1: Orbital evolution of a \(2 M_\oplus\) planet in discs with different metallicities \(Z\) and Stokes numbers \(\text{St}\).</em></p>
+
+              <div id="myModal" class="modal">
+                <!-- The Close Button -->
+                <span class="close">&times;</span>
+                <!-- Modal Content (The Image) -->
+                <img class="modal-content" id="img01">
+                <!-- Modal Caption (Image Text) -->
+                <div id="caption"></div>
+              </div>
+
+              <script>
+              // Get the modal
+              var modal = document.getElementById("myModal");
+
+              // Get the image and insert it inside the modal - use its "alt" text as a caption
+              var img = document.getElementById("Fig1");
+              var modalImg = document.getElementById("img01");
+              var captionText = document.getElementById("caption");
+              img.onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+              }
+
+              // Get the <span> element that closes the modal
+              var span = document.getElementsByClassName("close")[0];
+
+              // When the user clicks on <span> (x), close the modal
+              span.onclick = function() {
+                modal.style.display = "none";
+              }
+              </script>
+              <!-- End of Figure 1 (modal images) -->
+            </div>
+
+
+            <div class='col-sm-6'>
+              <!-- Figure 2 (modal images) -->
+              <br>
+              <img id="Fig2" src="https://raw.githubusercontent.com/hfhsieh/exo3-poster/master/Various_St_Z_Dens.png" alt="Relative surface density perturbation in the gas and dust discs at 500 orbits." style="width:100%;max-width:600px">
+              <br>
+              <p class='small text-justify'><em>Figure 2: Relative surface density perturbation in the gas and dust discs at 500 orbits. The planet position is marked by the white cross.</em></p>
+
+              <div id="myModal" class="modal">
+                <!-- The Close Button -->
+                <span class="close">&times;</span>
+                <!-- Modal Content (The Image) -->
+                <img class="modal-content" id="img01">
+                <!-- Modal Caption (Image Text) -->
+                <div id="caption"></div>
+              </div>
+
+              <script>
+              // Get the modal
+              var modal = document.getElementById("myModal");
+
+              // Get the image and insert it inside the modal - use its "alt" text as a caption
+              var img = document.getElementById("Fig2");
+              var modalImg = document.getElementById("img01");
+              var captionText = document.getElementById("caption");
+              img.onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+              }
+
+              // Get the <span> element that closes the modal
+              var span = document.getElementsByClassName("close")[0];
+
+              // When the user clicks on <span> (x), close the modal
+              span.onclick = function() {
+                modal.style.display = "none";
+              }
+              </script>
+              <!-- End of Figure 2 (modal images) -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+<!-- Steady Migration -->
+    <div class='col-sm-6'>
+      <div class='panel panel-default'>
+        <div class="panel-heading panel-custom-title">
+          <h4>Steady Migration</h4>
+        </div>
+        <div class='panel-body'>
+          <p class='text-justify'>
+            In discs with low metallicity \(Z \le 0.1\) and/or small Stokes number \(\text{St} \le 0.01\), a co-orbital dust ring and a detached dust gap are formed in the vicinity of planet, with no or a few dust vortices generated. The orbital migration can oscillate on short time-scales, but overall the planet still migrates inwards in which the average migration rate slows down over time due to dynamical corotation torques.
+            <br><br>
+            In discs with large Stokes number \((\text{St} \ge 0.03)\), an overdense, asymmetric dust blob is formed in the co-orbital dust ring. As the dust flow librates about the planet, it introduces unsteadiness in the dust torque that causes the planet to waggle in the disc.
+          </p>
+
+          <!-- Figure 3 (modal images) -->
+          <center>
+            <img id="Fig3" src="https://raw.githubusercontent.com/hfhsieh/exo3-poster/master/Steady_Z1e-2_St_rp.png" alt="Evolution of orbital distance in dusty discs with Z = 0.01 and different Stokes numbers." style="width:70%;max-width:600px">
+            <br><br>
+            <p class='small text-justify'><em>Figure 3: Evolution of orbital distance in dusty discs with \(Z = 0.01\) and different Stokes numbers.</em></p>
+
+            <div id="myModal" class="modal">
+              <!-- The Close Button -->
+              <span class="close">&times;</span>
+              <!-- Modal Content (The Image) -->
+              <img class="modal-content" id="img01">
+              <!-- Modal Caption (Image Text) -->
+              <div id="caption"></div>
+            </div>
+
+            <script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the image and insert it inside the modal - use its "alt" text as a caption
+            var img = document.getElementById("Fig3");
+            var modalImg = document.getElementById("img01");
+            var captionText = document.getElementById("caption");
+            img.onclick = function(){
+              modal.style.display = "block";
+              modalImg.src = this.src;
+              captionText.innerHTML = this.alt;
+            }
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+            </script>
+          </center>
+          <!-- End of Figure 3 (modal images) -->
+
+          <br><br>
+          <!-- Figure 4 (modal images) -->
+          <img id="Fig4" src="https://raw.githubusercontent.com/hfhsieh/exo3-poster/master/Steady_St_Z_Dens.png" alt="Relative surface density perturbation for disc models with Z = 0.01 and St = 0.001 (left), and Z = 0.3 and St = 0.01 (right)." style="width:100%;max-width:600px">
+          <br><br>
+
+            <p class='small text-justify'><em>Figure 4: Relative surface density perturbation for disc models with \(Z = 0.01\) and \(\text{St} = 10^{-3}\) at 1000 orbits (left), and \(Z = 0.3\) and \(\text{St} = 10^{-2}\) at 300 orbits (right).</em></p>
+
+          <div id="myModal" class="modal">
+            <!-- The Close Button -->
+            <span class="close">&times;</span>
+            <!-- Modal Content (The Image) -->
+            <img class="modal-content" id="img01">
+            <!-- Modal Caption (Image Text) -->
+            <div id="caption"></div>
+          </div>
+
+          <script>
+          // Get the modal
+          var modal = document.getElementById("myModal");
+
+          // Get the image and insert it inside the modal - use its "alt" text as a caption
+          var img = document.getElementById("Fig4");
+          var modalImg = document.getElementById("img01");
+          var captionText = document.getElementById("caption");
+          img.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+          }
+
+          // Get the <span> element that closes the modal
+          var span = document.getElementsByClassName("close")[0];
+
+          // When the user clicks on <span> (x), close the modal
+          span.onclick = function() {
+            modal.style.display = "none";
+          }
+          </script>
+          <!-- End of Figure 4 (modal images) -->
+        </div>
+      </div>
+    </div>
+
+<!-- Stochastic Results -->
+    <div class='col-sm-6'>
+      <div class='panel panel-default'>
+        <div class="panel-heading panel-custom-title">
+          <h4>Stochastic Migration</h4>
+        </div>
+        <div class='panel-body'>
+          <p class='text-justify'>
+            In discs where both the metallicity and Stokes number are large (\(Z \ge 0.3\) and \(\text{St} \ge 0.03\)), we find numerous dust vortices are formed in the vicinity of planet before the co-orbital dust ring is developed. These vortices exert strong torques on the planet, which can be an order of magnitude larger than Lindblad torques. The vortex-planet interaction thus dominates the migration behaviour, causing it to be chaotic and unpredictable. However, we find the migrating planet is confined by the dust gap. When the planet is scattered out of the dust gap the exterior dust disc tends to exert an opposing torque that pushes the planet back into the dust gap.
+          </p>
+
+          <!-- Figure 5 (modal images) -->
+          <center>
+            <img id="Fig5" src="https://raw.githubusercontent.com/hfhsieh/exo3-poster/master/Stochastic_rp_gapedge.png" alt="Evolution of orbital distance and gap edge in the disc with Z = 0.3 and St = 0.06." style="width:70%;max-width:600px">
+            <br><br>
+            <p class='small text-justify'><em>Figure 5: Evolution of orbital distance and gap edge in the disc with \(Z = 0.3\) and \(\text{St} = 0.06\). The dotted and dashed lines denote the edge of dust gap in the non-migrating and migrating planet cases, respectively.</em></p>
+
+            <div id="myModal" class="modal">
+              <!-- The Close Button -->
+              <span class="close">&times;</span>
+              <!-- Modal Content (The Image) -->
+              <img class="modal-content" id="img01">
+              <!-- Modal Caption (Image Text) -->
+              <div id="caption"></div>
+            </div>
+
+            <script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the image and insert it inside the modal - use its "alt" text as a caption
+            var img = document.getElementById("Fig5");
+            var modalImg = document.getElementById("img01");
+            var captionText = document.getElementById("caption");
+            img.onclick = function(){
+              modal.style.display = "block";
+              modalImg.src = this.src;
+              captionText.innerHTML = this.alt;
+            }
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+            </script>
+          </center>
+          <!-- End of Figure 5 (modal images) -->
+
+          <!-- Movie 1-->
+          <div class="embed-responsive embed-responsive-4by3">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/grEawGux1S4" allowfullscreen></iframe>
+          </div>
+          <p class='small text-justify'><em><br>Movie: Evolution of the dusty disc and orbital distance for the model with \(Z = 0.5\) and \(\text{St} = 0.03\).</em></p>
+          <!-- End of Movie 1 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Observation Implication -->
+  <div class='row'>
+    <div class='col-sm-12'>
+      <div class='panel panel-default'>
+        <div class="panel-heading panel-custom-title">
+          <h4>Observation Implications</h4>
+        </div>
+        <div class='panel-body'>
+          <div class='row'>
+
+            <div class='col-sm-4'>
+              <p class='text-justify'>
+                <ul class="list-unstyled text-justify">
+                  For discs with \(Z \lt 0.01\) or Stokes number \(\text{St} \le 10^{-3}\):
+                  <ul>
+                    <li>
+                      A co-orbital dust ring and a detached dust gap are formed in the vicinity of the migrating planet, which can have comparable depths to the other 4 gaps seen in the non-migrating planet case.
+                    </li>
+                    <li>
+                      The outer edge of detached gap does not signifiantly evolve with the migrating planet, so that it may be used to estimate the initial position of planet.
+                    </li>
+                  </ul>
+
+                  <br><br>
+                  For discs with \(Z \ge 0.3\) and Stokes number \(\text{St} \ge 0.03\):
+                  <ul>
+                    <li>
+                      A single, deep and wide dust gap is formed, which is filled with dust votices with radial length-scales ranging from \(0.01 \widetilde{H}\) to \(1 \widetilde{H}\).
+                    </li>
+                  </ul>
+                </ul>
+              </p>
+            </div>
+
+            <div class='col-sm-8'>
+              <br>
+              <!-- Figure 6 (modal images) -->
+              <center>
+                <img id="Fig6" src="https://raw.githubusercontent.com/hfhsieh/exo3-poster/master/St1e-3_Z1e-2_densave_nonmig_mig.png" alt="Azimuthally averaged, relative surface density perturbation in the gas disc (left) and dust disc (right) at 1000 orbits for the model with Z = 0.01 and St = 0.001." style="width:100%;max-width:700px">
+                <br>
+                <p class='small text-justify'><em>Figure 6: Azimuthally averaged, relative surface density perturbation in the gas disc (left) and dust disc (right) at 1000 orbits for the model with \(Z = 0.01\) and \(\text{St} = 10^{-3}\). The blue and orange curves corresponds to the non-migrating and migrating planet cases, respectively.</em></p>
+
+                <div id="myModal" class="modal">
+                  <!-- The Close Button -->
+                  <span class="close">&times;</span>
+                  <!-- Modal Content (The Image) -->
+                  <img class="modal-content" id="img01">
+                  <!-- Modal Caption (Image Text) -->
+                  <div id="caption"></div>
+                </div>
+
+                <script>
+                // Get the modal
+                var modal = document.getElementById("myModal");
+
+                // Get the image and insert it inside the modal - use its "alt" text as a caption
+                var img = document.getElementById("Fig6");
+                var modalImg = document.getElementById("img01");
+                var captionText = document.getElementById("caption");
+                img.onclick = function(){
+                  modal.style.display = "block";
+                  modalImg.src = this.src;
+                  captionText.innerHTML = this.alt;
+                }
+
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                  modal.style.display = "none";
+                }
+                </script>
+              </center>
+              <!-- End of Figure 6 (modal images) -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Concluding Remards -->
+  <div class='row'>
+    <div class='col-sm-12'>
+      <div class='panel panel-default'>
+        <div class="panel-heading panel-custom-title">
+          <h4>Concluding Remarks</h4>
+        </div>
+        <div class='panel-body'>
+          <p class='text-justify'>
+            We identify a new regime of stochastic migration applicable to discs with dust-to-gas mass ratios \(Z \gtrsim 0.3\) and particle Stokes numbers \(\text{St} \gtrsim 0.03\), where numerous dust vortices are formed and dominates the migration behaviour. The stochastic migration regime relies on efficient vortex formation in the vicinity of planet, which also requires:
+          </p>
+          <ul class="list-unstyled text-justify">
+            <ul>
+              <li>
+                <strong>High resolution</strong>: A resolution of \(\gtrsim (90, 40)\) cells per scale-height is required in radial and azimuthal directions, respectively.
+              </li>
+              <li>
+                <strong>Low viscosity</strong>: In discs with alpha viscosity \(\alpha \lesssim 3 \times 10^{-5}\).
+              </li>
+              <li>
+                <strong>Non-uniform potential vortensity</strong>: In discs with a gas surface density slope not equal to \(1.5\).
+              </li>
+            </ul>
+          </ul>
+          <p class='text-justify'>
+            Planetesimals may form within the dust vortices as they have high metallicities, leading to the formation of planetary embryos or protoplanets. Together with the original planet, this may be one way to form multi-planet systems.
+            <br><br>
+            For more detail, check our paper on <a href='https://arxiv.org/abs/2007.08235' target='_blank'>arXiv</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
+
