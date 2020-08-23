@@ -84,6 +84,8 @@ input, select, textarea {
 
 	body {
 		padding-top: 0em;
+		background-color: #303030;
+		color: #999;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -124,7 +126,7 @@ input, select, textarea {
 
 	b, strong {
 		font-weight: 600;
-		color: #3e3e3e;
+		color: #d8d8d8;
 	}
 
 	i, em {
@@ -1648,6 +1650,11 @@ input, select, textarea {
 			margin: 0 2em 2em 0;
 		}
 
+		.image.right {
+			float: right;
+			margin: 0 0 2em 2em;
+		}
+
 		.image.centered {
 			display: block;
 			margin: 0 0 2em 0;
@@ -1676,7 +1683,7 @@ input, select, textarea {
 		-webkit-appearance: none;
 		position: relative;
 		display: inline-block;
-		color: #fff !important;
+		color: #d8d8d8 !important;
 		text-decoration: none;
 		font-weight: 700;
 		border: 0;
@@ -1937,6 +1944,7 @@ input, select, textarea {
 			width: auto;
 		}
 
+
 /* Icons */
 
 	.icon {
@@ -2011,11 +2019,14 @@ input, select, textarea {
 		.wrapper.style4 {
 			background-color: #303030;
 			color: #999;
-			text-shadow: -1px -1px 0px #181818;
 		}
 
-			.wrapper.style4 h1, .wrapper.style4 h2, .wrapper.style4 h3, .wrapper.style4 h4, .wrapper.style4 h5, .wrapper.style4 h6 {
-				color: #fff;
+			.wrapper.style4 h1, .wrapper.style4 h2, .wrapper.style4 h4, .wrapper.style4 h5, .wrapper.style4 h6 {
+				color: #d8d8d8;
+			}
+
+			.wrapper.style4 h3 {
+				color: #303030;
 			}
 
 			.wrapper.style4 form input[type=text],
@@ -2066,12 +2077,12 @@ input, select, textarea {
 			transition: background-color .2s ease-in-out;
 			position: relative;
 			display: block;
-			color: #fff;
+			color: #d8d8d8;
 			text-decoration: none;
 			outline: 0;
 			font-weight: 600;
 			border-radius: 8px;
-			color: #fff;
+			color: #d8d8d8;
 			height: 2.5em;
 			line-height: 2.5em;
 			padding: 0 1.25em;
@@ -2105,7 +2116,7 @@ input, select, textarea {
 	}
 
 	#top {
-		padding: 10em 0 4em 0;
+		padding: 8em 0 4em 0;
 		text-align: left;
 	}
 
@@ -2132,6 +2143,20 @@ input, select, textarea {
 			#top p a {
 				color: inherit;
 			}
+
+	#portfolio {
+		padding: 8em 0 4em 0;
+	}
+
+		#portfolio p {
+			text-align: left;
+			font-size: 1.35em;
+			line-height: 1.75em;
+		}
+
+		#portfolio video {
+			text-align: justify-all;
+		}
 
 	#contact footer {
 		font-size: 0.9em;
